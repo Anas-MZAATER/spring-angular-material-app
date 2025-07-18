@@ -1,15 +1,53 @@
+<!-- https://material.angular.dev/components/categories -->
 <!--===============bien styler=============-->
 <div class="container">
   <mat-card class="home-card">
     <mat-card-header style="background-color: aqua;border-radius: 5px">
-      <mat-card-title class="title">Students title</mat-card-title>
+      <mat-card-title class="title">Students tiltle</mat-card-title>
     </mat-card-header>
 
     <!-- pour separer entre les composants de card avec un ligne-->
     <mat-divider class="divider"></mat-divider>
 
     <mat-card-content class="content">
-      <p>Students content.</p>
+        <!-- l'attribut table fais un forEach pour sur le dataSource
+         pour chaque étudiant et puis pour chaque attribut de ce items-->
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- firstName Column -->
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef> firstName </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+          </ng-container>
+
+          <!-- lastName Column -->
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef> lastName </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+          </ng-container>
+
+          <!-- Payments Column -->
+          <ng-container matColumnDef="payments">
+            <th mat-header-cell *matHeaderCellDef> payments </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-raised-button color="primary">Payments</button>
+            </td>
+          </ng-container>
+
+          <!-- displayedColumns: c'est le tableau dans lequel
+          on declare les nom des columns de -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
     </mat-card-content>
   </mat-card>
 </div>

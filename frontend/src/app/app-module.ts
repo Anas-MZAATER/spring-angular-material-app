@@ -20,6 +20,16 @@ import {MatTabLink, MatTabNav} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import { LoadStudents } from './load-students/load-students';
 import { LoadPayments } from './load-payments/load-payments';
+import {
+  MatCell, MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef,
+  MatRow, MatRowDef,
+  MatTable, MatTableModule
+} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -52,7 +62,17 @@ import { LoadPayments } from './load-payments/load-payments';
     MatTabNav,
     MatTabLink,
     MatCardModule,
-    MatDivider
+    MatDividerModule,
+    MatTableModule
+    // MatColumnDef,
+    // MatHeaderCell,
+    // MatCell,
+    // MatHeaderRow,
+    // MatRow,
+    // MatHeaderCellDef,
+    // MatCellDef,
+    // MatHeaderRowDef,
+    // MatRowDef
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
