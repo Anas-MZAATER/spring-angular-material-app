@@ -8,17 +8,33 @@ import {Payments} from './payments/payments';
 import {Login} from './login/login';
 import {LoadStudents} from './load-students/load-students';
 import {LoadPayments} from './load-payments/load-payments';
+import {AdminTemplate} from "./admin-template/admin-template";
+import {Template} from "./template/template";
 
 const routes: Routes = [
-  {path : 'home' , component : Home },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'profile', component: Profile },
-  {path:'dashboard',component:Dashboard},
-  {path:'students',component:Students},
-  {path:'payments',component:Payments},
   {path:'login',component:Login},
-  {path:'loadStudents',component:LoadStudents},
-  {path:'loadPayments',component:LoadPayments}
+  {path: '', redirectTo: '/login', pathMatch: 'full' },
+  // {path : 'admin' , component : AdminTemplate,
+  //           children : [
+  //             {path : 'home' , component : Home },
+  //             {path: 'profile', component: Profile },
+  //             {path:'dashboard',component:Dashboard},
+  //             {path:'students',component:Students},
+  //             {path:'payments',component:Payments},
+  //             {path:'loadStudents',component:LoadStudents},
+  //             {path:'loadPayments',component:LoadPayments}
+  //           ]},
+  {path : 'template' , component : Template,
+    children : [
+      {path : 'home' , component : Home },
+      {path: 'profile', component: Profile },
+      {path:'dashboard',component:Dashboard},
+      {path:'students',component:Students},
+      {path:'payments',component:Payments},
+      {path:'loadStudents',component:LoadStudents},
+      {path:'loadPayments',component:LoadPayments}
+    ]},
+
 ];
 
 @NgModule({

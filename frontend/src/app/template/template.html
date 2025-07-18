@@ -53,8 +53,8 @@
   </button>
   <span>My App</span>
   <span style="flex: 1 1 auto"></span>
-  <button mat-button routerLink="/home">Home</button>
-  <button mat-button routerLink="/profile">Profile</button>
+  <button mat-button routerLink="/template/home">Home</button>
+  <button mat-button routerLink="/template/profile">Profile</button>
   <button [matMenuTriggerFor]="importMenu" mat-button>
     Import <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
   </button>
@@ -62,29 +62,29 @@
 </mat-toolbar>
 
 <mat-menu #importMenu>
-  <button routerLink="/loadStudents" mat-menu-item>Load Students</button>
-  <button routerLink="loadPayments" mat-menu-item>Load Payments</button>
+  <button routerLink="/template/loadStudents" mat-menu-item>Load Students</button>
+  <button routerLink="/template/loadPayments" mat-menu-item>Load Payments</button>
 </mat-menu>
 
 <!--================side navbar==================-->
-<mat-sidenav-container style="height: calc(100% - 64px);" >
+<mat-sidenav-container>
   <!-- opned false to make side bar cache au depart -->
   <mat-sidenav #drawer mode="side" opened="false">
     <mat-nav-list>
       <!--(click)="drawer.close()" pour que apres l'evenements de click
       refermer le sidebare-->
-      <a  mat-list-item routerLink="/dashboard" (click)="drawer.close()">
-        <div style="display: flex ;align-items: center;gap: 8px;">
+      <a  mat-list-item routerLink="/template/dashboard" (click)="drawer.close()">
+        <div>
           <mat-icon matListIcon>dashboard</mat-icon>
           Dashboard</div>
       </a>
-      <a mat-list-item routerLink="/students">
-        <div style="display: flex ;align-items: center;gap: 8px;">
+      <a mat-list-item routerLink="/template/students">
+        <div>
           <mat-icon matListIcon>people</mat-icon>
           Students</div>
       </a>
-      <a mat-list-item routerLink="/payments">
-        <div style="display: flex ;align-items: center;gap: 8px;">
+      <a mat-list-item routerLink="/template/payments">
+        <div>
           <mat-icon matListIcon>payment</mat-icon>
           Payments</div>
       </a>
@@ -92,7 +92,7 @@
   </mat-sidenav>
   <!--==============CONTENT==============-->
   <mat-sidenav-content>
-    <div style="min-height: 600px">
+    <div>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
