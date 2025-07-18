@@ -1,0 +1,42 @@
+/*mat-form-filed{*/
+/*  display: block;*/
+/*}*/
+/*.login-container{*/
+/*  width: 600px;*/
+/*  justify-content: center;*/
+/*  margin: auto;*/
+/*}*/
+
+
+/*=========bien styler==============*/
+.login-card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.login-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #3f51b5;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-card-actions {
+  margin-top: 16px;
+  /*justify-content: center;*/
+}

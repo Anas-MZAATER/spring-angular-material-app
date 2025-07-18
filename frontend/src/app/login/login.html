@@ -1,16 +1,63 @@
+<!--&lt;!&ndash; https://material.angular.dev/components/categories &ndash;&gt;-->
+<!--&lt;!&ndash;===============bien styler=============&ndash;&gt;-->
+<!--<div class="container">-->
+<!--  <mat-card>-->
+<!--    <mat-card-header style="background-color: aqua;border-radius: 5px">-->
+<!--      <mat-card-title class="title">Authentification</mat-card-title>-->
+<!--    </mat-card-header>-->
+
+<!--    &lt;!&ndash; pour separer entre les composants de card avec un ligne&ndash;&gt;-->
+<!--    <mat-divider class="divider"></mat-divider>-->
+
+<!--    <mat-card-content class="login-container">-->
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Username or Email</mat-label>-->
+<!--        <input matInput formControlName="username">-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Password</mat-label>-->
+<!--        <input type="password" matInput formControlName="password">-->
+<!--      </mat-form-field>-->
+<!--    </mat-card-content>-->
+
+<!--    <mat-card-actions align="end">-->
+<!--      <button mat-raised-button color="primari">Login</button>-->
+<!--    </mat-card-actions>-->
+
+<!--  </mat-card>-->
+<!--</div>-->
+
+
+
+<!-- ===================bien styler======================-->
 <!-- https://material.angular.dev/components/categories -->
-<!--===============bien styler=============-->
 <div class="container">
-  <mat-card class="home-card">
-    <mat-card-header style="background-color: aqua;border-radius: 5px">
-      <mat-card-title class="title">Authentification</mat-card-title>
-    </mat-card-header>
+  <!--verifier loginFormGroup content-->
+  {{loginFormGroup.value | json}}
+  <mat-card class="login-card">
+    <mat-card-title class="login-title">🔐 Login</mat-card-title>
 
-    <!-- pour separer entre les composants de card avec un ligne-->
-    <mat-divider class="divider"></mat-divider>
+    <mat-card-content class="login-container">
+      <form [formGroup]="loginFormGroup">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username or Email</mat-label>
+          <input matInput formControlName="username" placeholder="Enter your email or username" />
+        </mat-form-field>
 
-    <mat-card-content class="content">
-      <p>Login Form.</p>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" placeholder="Enter your password" />
+        </mat-form-field>
+      </form>
     </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button
+        (click)="login()"
+        mat-raised-button color="primary"
+      >Login</button>
+    </mat-card-actions>
   </mat-card>
 </div>
+
+

@@ -34,6 +34,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     // MatCellDef,
     // MatHeaderRowDef,
     // MatRowDef
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

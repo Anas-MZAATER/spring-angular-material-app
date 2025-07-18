@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import {Router} from '@angular/router';
 
 
 function randomString(len: number = 5): string {
@@ -29,7 +30,7 @@ export class Students implements OnInit,AfterViewInit {
   //pour le tri
   @ViewChild(MatSort) sort!:MatSort;
 
-  constructor() {
+  constructor(private router : Router) {
   }
 
 
@@ -41,6 +42,7 @@ export class Students implements OnInit,AfterViewInit {
       this.students.push(
         {
           id : i,
+          //initialiser les champs de nom et prenom par un chain aléatoire
           firstName: randomString(4),
           lastName: randomString(6),
           payments:[]
@@ -63,5 +65,10 @@ export class Students implements OnInit,AfterViewInit {
   filterStudents($event: Event) {
     let value = (event?.target as HTMLInputElement).value;
     this.dataSource.filter =value;
+  }
+
+  getPayments(students:any) {
+    this.router.navigateByUrl("/payments")
+    //=>injection de la class Router
   }
 }

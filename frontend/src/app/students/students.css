@@ -1,17 +1,20 @@
 .search-container {
   display: flex;
+  justify-content: center;
   margin: 20px 0;
 }
 
 .search-field {
+  width: 100%;
   max-width: 400px;
 
   mat-icon {
-    color: #757575; /*// gris discret*/
+    color: #757575;
+    /* gris discret*/
   }
 
   input {
-    padding-right: 36px; /*// pour ne pas superposer l'icône*/
+    padding-right: 36px;
+    /* pour ne pas superposer l'icône*/
   }
-
 }
