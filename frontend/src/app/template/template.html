@@ -67,23 +67,26 @@
 </mat-menu>
 
 <!--================side navbar==================-->
-<mat-sidenav-container style="height: calc(100vh - 64px);">
+<mat-sidenav-container style="height: calc(100% - 64px);" >
   <!-- opned false to make side bar cache au depart -->
   <mat-sidenav #drawer mode="side" opened="false">
     <mat-nav-list>
       <!--(click)="drawer.close()" pour que apres l'evenements de click
       refermer le sidebare-->
-      <a mat-list-item routerLink="/dashboard" (click)="drawer.close()">
-        <mat-icon matListIcon>dashboard</mat-icon>
-        Dashboard
+      <a  mat-list-item routerLink="/dashboard" (click)="drawer.close()">
+        <div style="display: flex ;align-items: center;gap: 8px;">
+          <mat-icon matListIcon>dashboard</mat-icon>
+          Dashboard</div>
       </a>
       <a mat-list-item routerLink="/students">
-        <mat-icon matListIcon>people</mat-icon>
-        Students
+        <div style="display: flex ;align-items: center;gap: 8px;">
+          <mat-icon matListIcon>people</mat-icon>
+          Students</div>
       </a>
       <a mat-list-item routerLink="/payments">
-        <mat-icon matListIcon>payment</mat-icon>
-        Payments
+        <div style="display: flex ;align-items: center;gap: 8px;">
+          <mat-icon matListIcon>payment</mat-icon>
+          Payments</div>
       </a>
     </mat-nav-list>
   </mat-sidenav>
