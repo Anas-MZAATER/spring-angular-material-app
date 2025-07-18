@@ -22,6 +22,17 @@ testem.log
 libpeerconnection.log
 connect.lock
 
+
+# Miscellaneous
+**/.angular/cache
+.sass-cache/
+**/connect.lock
+**/coverage
+**/libpeerconnection.log
+testem.log
+**/typings
+
+
 # 👨‍💻 Editor / IDE settings
 **/.idea/
 *.iws
@@ -30,6 +41,7 @@ connect.lock
 *.classpath
 *.project
 *.settings/
+*.c9/
 *.launch
 *.sublime-workspace
 .factorypath
@@ -37,7 +49,7 @@ connect.lock
 .sts4-cache
 .apt_generated
 
-# 🧪 TypeScript and misc build cache
+# 🧪 TypeScript cache and misc build cache
 *.tsbuildinfo
 .sass-cache/
 
@@ -51,6 +63,10 @@ connect.lock
 
 # 🌍 Environment files
 **/.env
+
+# Angular CLI and build artefacts
+**/.angular-cli.json
+**/.ng/
 
 # 🧪 Spring Boot build
 **/target/
@@ -70,4 +86,3 @@ HELP.md
 # 🖥️ System files
 .DS_Store
 Thumbs.db
-
