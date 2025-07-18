@@ -10,8 +10,27 @@
     <mat-divider class="divider"></mat-divider>
 
     <mat-card-content class="content">
-        <!-- l'attribut table fais un forEach pour sur le dataSource
-         pour chaque étudiant et puis pour chaque attribut de ce items-->
+        <!-- formulaire de recherche -->
+<!--        <mat-form-field appearance="outline">-->
+<!--          <mat-label>Search : </mat-label>-->
+<!--          <input matInput (change)="filterStudents($event)">-->
+<!--        </mat-form-field>-->
+      <div class="search-container">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search</mat-label>
+          <input
+            matInput
+            type="text"
+            (input)="filterStudents($event)"
+            placeholder="Search students..."
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+
+      <!-- l'attribut table fais un forEach pour sur le dataSource
+       pour chaque étudiant et puis pour chaque attribut de ce items-->
         <!-- matSort pout le tri par chaque attribut-->
         <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 

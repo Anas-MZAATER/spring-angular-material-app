@@ -59,4 +59,9 @@ export class Students implements OnInit,AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
+  //pour la recherche
+  filterStudents($event: Event) {
+    let value = (event?.target as HTMLInputElement).value;
+    this.dataSource.filter =value;
+  }
 }

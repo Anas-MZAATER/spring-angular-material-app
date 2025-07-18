@@ -1,0 +1,17 @@
+.search-container {
+  display: flex;
+  margin: 20px 0;
+}
+
+.search-field {
+  max-width: 400px;
+
+  mat-icon {
+    color: #757575; /*// gris discret*/
+  }
+
+  input {
+    padding-right: 36px; /*// pour ne pas superposer l'icône*/
+  }
+
+}

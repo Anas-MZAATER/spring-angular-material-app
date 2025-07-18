@@ -32,6 +32,8 @@ import {
 import {MatDividerModule} from '@angular/material/divider';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort, MatSortHeader} from '@angular/material/sort';
+import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import {MatSort, MatSortHeader} from '@angular/material/sort';
     MatPaginator,
     MatSortHeader,
     MatSort,
+    MatInput,
+    MatFormFieldModule,
     // MatColumnDef,
     // MatHeaderCell,
     // MatCell,
