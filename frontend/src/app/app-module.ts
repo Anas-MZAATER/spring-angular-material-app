@@ -48,7 +48,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     Login,
     LoadStudents,
     LoadPayments,
-    AdminTemplate
   ],
   imports: [
     BrowserModule,

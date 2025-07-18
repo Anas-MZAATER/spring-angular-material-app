@@ -8,7 +8,6 @@ import {Payments} from './payments/payments';
 import {Login} from './login/login';
 import {LoadStudents} from './load-students/load-students';
 import {LoadPayments} from './load-payments/load-payments';
-import {AdminTemplate} from "./admin-template/admin-template";
 import {Template} from "./template/template";
 
 const routes: Routes = [

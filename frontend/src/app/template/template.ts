@@ -15,4 +15,7 @@ export class Template implements OnInit{
         // throw new Error('Method not implemented.');
     }
 
+  logout() {
+    this.authService.logout()
+  }
 }

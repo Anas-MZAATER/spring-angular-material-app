@@ -58,7 +58,10 @@
   <button [matMenuTriggerFor]="importMenu" mat-button>
     Import <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
   </button>
-  <button mat-raised-button color="accent" routerLink="/login">Login</button>
+  <button *ngIf="authService.authenticated" mat-button>
+    {{authService.username}}
+  </button>
+  <button (click)="logout()" mat-raised-button color="accent">Logout</button>
 </mat-toolbar>
 
 <mat-menu #importMenu>
