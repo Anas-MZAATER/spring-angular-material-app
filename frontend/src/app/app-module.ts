@@ -31,6 +31,7 @@ import {
 } from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatSort, MatSortHeader} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,8 @@ import {MatPaginator} from '@angular/material/paginator';
     MatDividerModule,
     MatTableModule,
     MatPaginator,
+    MatSortHeader,
+    MatSort,
     // MatColumnDef,
     // MatHeaderCell,
     // MatCell,

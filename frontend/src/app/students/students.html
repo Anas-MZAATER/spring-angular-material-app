@@ -12,32 +12,34 @@
     <mat-card-content class="content">
         <!-- l'attribut table fais un forEach pour sur le dataSource
          pour chaque étudiant et puis pour chaque attribut de ce items-->
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+        <!-- matSort pout le tri par chaque attribut-->
+        <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z1">
 
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
 
           <!-- ID Column -->
           <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID. </th>
+            <!-- mat-sort-header pout le tri par chaque attribut-->
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID. </th>
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
 
           <!-- firstName Column -->
           <ng-container matColumnDef="firstName">
-            <th mat-header-cell *matHeaderCellDef> firstName </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> firstName </th>
             <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
           </ng-container>
 
           <!-- lastName Column -->
           <ng-container matColumnDef="lastName">
-            <th mat-header-cell *matHeaderCellDef> lastName </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> lastName </th>
             <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
           </ng-container>
 
           <!-- Payments Button -->
           <ng-container matColumnDef="payments">
-            <th mat-header-cell *matHeaderCellDef> payments </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> payments </th>
             <td mat-cell *matCellDef="let element">
               <button mat-raised-button color="primary">Payments</button>
             </td>

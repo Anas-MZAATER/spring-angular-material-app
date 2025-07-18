@@ -1,6 +1,17 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+
+
+function randomString(len: number = 5): string {
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+  let str = '';
+  for (let i = 0; i < len; i++) {
+    str += letters[Math.floor(Math.random() * letters.length)];
+  }
+  return str;
+}
 
 @Component({
   selector: 'app-students',
@@ -13,7 +24,11 @@ export class Students implements OnInit,AfterViewInit {
   public dataSource:any;
   public displayedColumns=["id","firstName","lastName","payments"];
   //pour ajouter la pagination
+  // la "!" pour ne pas l'initialiser
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  //pour le tri
+  @ViewChild(MatSort) sort!:MatSort;
+
   constructor() {
   }
 
@@ -26,8 +41,8 @@ export class Students implements OnInit,AfterViewInit {
       this.students.push(
         {
           id : i,
-          firstName: Math.random().toString(20).substring(2,7),
-          lastName: Math.random().toString(20),
+          firstName: randomString(4),
+          lastName: randomString(6),
           payments:[]
         }
       );
@@ -36,10 +51,12 @@ export class Students implements OnInit,AfterViewInit {
     //maintenant en affiche notre dataSource dans la partie html
   }
 
-  //pour ajouter la pagination
   ngAfterViewInit(): void {
     // throw new Error('Method not implemented.');
+    //pour ajouter la pagination
     this.dataSource.paginator = this.paginator;
+    //pour le tri
+    this.dataSource.sort = this.sort;
   }
 
 }
