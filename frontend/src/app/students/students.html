@@ -35,7 +35,7 @@
             <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
           </ng-container>
 
-          <!-- Payments Column -->
+          <!-- Payments Button -->
           <ng-container matColumnDef="payments">
             <th mat-header-cell *matHeaderCellDef> payments </th>
             <td mat-cell *matCellDef="let element">
@@ -48,6 +48,12 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
+
+        <!-- ajouter la pagination -->
+        <mat-paginator [pageSizeOptions]="[5, 10, 15,30,50,100]"
+                       showFirstLastButtons
+                       aria-label="Select page of periodic elements">
+        </mat-paginator>
     </mat-card-content>
   </mat-card>
 </div>

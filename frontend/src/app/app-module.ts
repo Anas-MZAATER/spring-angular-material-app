@@ -30,6 +30,7 @@ import {
   MatTable, MatTableModule
 } from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatPaginator} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabLink,
     MatCardModule,
     MatDividerModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginator,
     // MatColumnDef,
     // MatHeaderCell,
     // MatCell,
