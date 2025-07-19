@@ -35,6 +35,7 @@ import {MatSort, MatSortHeader} from '@angular/material/sort';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
+import {authGuards} from "./guards/auth-guard";
 
 @NgModule({
   declarations: [
@@ -86,7 +87,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    authGuards
   ],
   bootstrap: [App]
 })

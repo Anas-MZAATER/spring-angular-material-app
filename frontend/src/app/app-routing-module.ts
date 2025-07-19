@@ -9,6 +9,7 @@ import {Login} from './login/login';
 import {LoadStudents} from './load-students/load-students';
 import {LoadPayments} from './load-payments/load-payments';
 import {Template} from "./template/template";
+import {authGuards} from "./guards/auth-guard";
 
 const routes: Routes = [
   {path:'login',component:Login},
@@ -23,7 +24,7 @@ const routes: Routes = [
   //             {path:'loadStudents',component:LoadStudents},
   //             {path:'loadPayments',component:LoadPayments}
   //           ]},
-  {path : 'template' , component : Template,
+  {path : 'template' , component : Template,canActivate:[authGuards],
     children : [
       {path : 'home' , component : Home },
       {path: 'profile', component: Profile },
