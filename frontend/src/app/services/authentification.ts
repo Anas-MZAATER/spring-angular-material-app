@@ -10,13 +10,18 @@ export class Authentification {
   public username:any;
   public roles : any;
   public authenticated : boolean = false;
+  public users:any={
+    'admin':['STUDENT','ADMIN'],
+    'user1':['STUDENT']
+  }
+
   constructor(private router:Router) { }
 
 
   public login(username:String , password:String){
-    if(username=="admin" && password=="1234"){
+    if(this.users[username] && password=="1234"){
       this.username = username;
-      this.roles = ['ADMIN'];
+      this.roles = this.users[username];
       this.authenticated=true;
       return true;
     } else {
