@@ -46,31 +46,36 @@
 
 <!-- https://material.angular.dev/components/categories -->
 <!--==========TOP BAR================-->
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="fixed-navbar">
   <button (click)="drawer.toggle()" mat-icon-button>
     <!--  https://www.angularjswiki.com/angular/angular-material-icons-list-mat-icon-list/  -->
     <mat-icon>menu</mat-icon>
   </button>
   <span>My App</span>
-  <span style="flex: 1 1 auto"></span>
+
   <button mat-button routerLink="/template/home">Home</button>
-  <button mat-button routerLink="/template/profile">Profile</button>
-  <button [matMenuTriggerFor]="importMenu" mat-button>
+  <button *ngIf="authService.roles.includes('ADMIN')" [matMenuTriggerFor]="importMenu" mat-button>
     Import <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
   </button>
-  <button *ngIf="authService.authenticated" mat-button>
-    {{authService.username}}
+  <button mat-button routerLink="/template/profile">Profile</button>
+
+  <span class="spacer"></span>
+  <button *ngIf="authService.authenticated" [matMenuTriggerFor]="profileMenu" mat-button>
+    {{authService.username}} <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
   </button>
-  <button (click)="logout()" mat-raised-button color="accent">Logout</button>
 </mat-toolbar>
 
 <mat-menu #importMenu>
   <button routerLink="/template/loadStudents" mat-menu-item>Load Students</button>
   <button routerLink="/template/loadPayments" mat-menu-item>Load Payments</button>
 </mat-menu>
+<mat-menu #profileMenu>
+  <button (click)="logout()" mat-menu-item color="accent">Logout</button>
+  <button routerLink="/template/loadPayments" mat-menu-item>Setings</button>
+</mat-menu>
 
 <!--================side navbar==================-->
-<mat-sidenav-container>
+<mat-sidenav-container class="main-content">
   <!-- opned false to make side bar cache au depart -->
   <mat-sidenav #drawer mode="side" opened="false">
     <mat-nav-list>

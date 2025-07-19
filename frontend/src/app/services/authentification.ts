@@ -18,7 +18,7 @@ export class Authentification {
   constructor(private router:Router) { }
 
 
-  public login(username:String , password:String){
+  public login(username:any , password:String){
     if(this.users[username] && password=="1234"){
       this.username = username;
       this.roles = this.users[username];

@@ -10,7 +10,8 @@ html,
 body {
   height: 100%;
   margin: 0;
-  overflow: hidden;
+  /* Autoriser le défilement vertical */
+  overflow-y: auto;
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
   /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
   font-size: 14px;
@@ -24,6 +25,8 @@ body {
 :host {
   display: block;
   min-height: 100vh;
+  /* Autoriser le défilement vertical */
+  overflow-y: auto;
 }
 
 

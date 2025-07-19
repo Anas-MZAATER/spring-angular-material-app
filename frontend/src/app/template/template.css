@@ -1,3 +1,16 @@
+/* Separer entre les elements du navbar */
 .spacer{
-  flex: auto;
+  flex: 1 1 auto;
+}
+/* fixe la navbar dans le DOM */
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.main-content {
+  margin-top: 64px; /* Ajustez cette valeur en fonction de la hauteur de votre navbar */
+  height: calc(100vh - 64px);
 }
