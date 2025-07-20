@@ -74,8 +74,9 @@
   <button routerLink="/template/loadPayments" mat-menu-item>Setings</button>
 </mat-menu>
 
-<!--================side navbar==================-->
+<!--================after top bar==================-->
 <mat-sidenav-container class="main-content">
+  <!--================side navbar==================-->
   <!-- opned false to make side bar cache au depart -->
   <mat-sidenav #drawer mode="side" opened="false">
     <mat-nav-list>
@@ -100,14 +101,18 @@
   </mat-sidenav>
   <!--==============CONTENT==============-->
   <mat-sidenav-content>
-    <div>
+    <!-- pour asurer que les table ou les contenu en generel ne donne pas une
+       form non convonable et utilise un scroler aprer le min width-->
+    <div style="min-width: 490px; min-height: 800px">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<!--==========sidebar a droit===========-->
 
+
+
+<!--==========sidebar a droit===========-->
 
 <!--&lt;!&ndash; https://material.angular.dev/components/categories &ndash;&gt;-->
 <!--&lt;!&ndash; Toolbar avec boutons à gauche &ndash;&gt;-->

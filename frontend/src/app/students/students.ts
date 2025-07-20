@@ -24,6 +24,7 @@ export class Students implements OnInit,AfterViewInit {
   public students :any;
   public dataSource:any;
   public displayedColumns=["id","firstName","lastName","payments"];
+
   //pour ajouter la pagination
   // la "!" pour ne pas l'initialiser
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -61,10 +62,17 @@ export class Students implements OnInit,AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  //pour la recherche
+  //pour la recherche sans data-binding(solution classic)
+  // filterStudents($event: Event) {
+  //   let value = (event?.target as HTMLInputElement).value;
+  //   this.dataSource.filter =value;
+  // }
+
+  // Rendre la recherche insensible à la casse sans data-binding(solution classic)
   filterStudents($event: Event) {
-    let value = (event?.target as HTMLInputElement).value;
-    this.dataSource.filter =value;
+    const target = $event.target as HTMLInputElement;
+    const value = target.value.trim().toLowerCase(); // normalisation
+    this.dataSource.filter = value;
   }
 
   getPayments(students:any) {
