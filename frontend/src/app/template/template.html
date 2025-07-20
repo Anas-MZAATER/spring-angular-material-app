@@ -60,7 +60,8 @@
   <button mat-button routerLink="/template/profile">Profile</button>
 
   <span class="spacer"></span>
-  <button *ngIf="authService.authenticated" [matMenuTriggerFor]="profileMenu" mat-button>
+  <button mat-raised-button color="accent"
+    *ngIf="authService.authenticated" [matMenuTriggerFor]="profileMenu">
     {{authService.username}} <mat-icon iconPositionEnd>arrow_drop_down</mat-icon>
   </button>
 </mat-toolbar>

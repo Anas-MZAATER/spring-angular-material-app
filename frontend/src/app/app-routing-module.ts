@@ -13,8 +13,6 @@ import {authGuards} from "./guards/auth-guard";
 import {authorizationGuards} from "./guards/authorization-guard";
 
 const routes: Routes = [
-  {path:'login',component:Login},
-  {path: '', redirectTo: '/login', pathMatch: 'full' },
   // {path : 'admin' , component : AdminTemplate,
   //           children : [
   //             {path : 'home' , component : Home },
@@ -25,6 +23,8 @@ const routes: Routes = [
   //             {path:'loadStudents',component:LoadStudents},
   //             {path:'loadPayments',component:LoadPayments}
   //           ]},
+  {path:'login',component:Login},
+  {path: '', redirectTo: '/login', pathMatch: 'full' },
   {path : 'template' , component : Template,canActivate:[authGuards],
     children : [
       {path : 'home' , component : Home },
@@ -32,7 +32,6 @@ const routes: Routes = [
       {path:'dashboard',component:Dashboard},
       {path:'students',component:Students},
       {path:'payments',component:Payments},
-
       {path:'loadStudents',component:LoadStudents,
         canActivate:[authorizationGuards],
         data:{roles:['ADMIN']}

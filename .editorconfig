@@ -48,3 +48,9 @@ indent_size = 2
 [*.md]
 trim_trailing_whitespace = false
 max_line_length = off
+
+
+######################Spring Specefic: Intilij###################
+
+/mvnw text eol=lf
+*.cmd text eol=crlf
