@@ -7,6 +7,7 @@ import net.anas.backend.entities.PaymentsType;
 import net.anas.backend.entities.Students;
 import net.anas.backend.repository.PaymentsRepo;
 import net.anas.backend.repository.StudentsRepo;
+import net.anas.backend.service.PaymentService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,7 @@ import java.util.UUID;
 public class StudentsRestController {
     private  StudentsRepo studentsRepo;
     private PaymentsRepo paymentsRepo;
+    private PaymentService paymentService;
 
     public StudentsRestController(StudentsRepo studentsRepo, PaymentsRepo paymentsRepo) {
         this.studentsRepo = studentsRepo;
@@ -61,45 +63,13 @@ public class StudentsRestController {
     //# = MultipartFile est une interface de Spring qui représente un fichier
     //#  envoyé par un client (navigateur, application Angular, Postman, etc.)
     //#  via une requête HTTP multipart/form-data.
-    public Payments savePayments(
+    public Payments savePayment(
             @RequestParam MultipartFile file,
             LocalDate date, double amount,
             PaymentsType type,
             String studentsC) {
-        Path path = Paths.get(System.getProperty("user.home"),"students-app-file","payments");
 
-        if(!Files.exists(path)){
-            //Traiter la méthode à tâche critique : Pour créer un dossier dans le dossier home de l'utilisateur
-            //aprés verifier : if not existe
-            try {
-                Files.createDirectories(path);
-                System.out.println("Dossier(s) de payments créé(s) avec succès : " + path.toAbsolutePath());
-            } catch (IOException e) {
-                System.err.println("Erreur lors de la création du dossier : " + e.getMessage());
-                //e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        }
-        String paymentsId = UUID.randomUUID().toString();
-        Path filePath = Paths.get(System.getProperty("user.home"),"students-app-file","payments",paymentsId+".pdf");
-        try {
-            Files.copy(file.getInputStream(),filePath);//permet de copier les données vers un fichier
-            System.out.println("Fichier copy avec succès : " + path.toAbsolutePath());
-        } catch (IOException e) {
-            System.err.println("Erreur lors de la copy de fichier : " + e.getMessage());
-            //e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-        Students students = studentsRepo.findByCode(studentsC);
-        Payments payments =  Payments.builder()
-                .type(type)
-                .amount(amount)
-                .student(students)
-                .status(PaymentsStatus.CREATED)
-                .date(date)
-                .file(filePath.toUri().toString())
-                .build();
-        return paymentsRepo.save(payments);
+        return paymentService.savePayment(file, date, amount, type, studentsC);
     }
 
     @GetMapping(value = "/paymentFile/{paymentId}",produces = MediaType.APPLICATION_PDF_VALUE)
