@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
+//Students est une entité JPA
 @NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString @Builder
 public class Students {
     @Id

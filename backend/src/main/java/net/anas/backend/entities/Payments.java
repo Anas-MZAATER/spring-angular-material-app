@@ -6,7 +6,13 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Entity
-@NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString @Builder
+//payments est une entité JPA
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class Payments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +21,9 @@ public class Payments {
     private String description;
     private double amount;
     private PaymentsType type;
-//    @Enumerated(EnumType.STRING) // Si PaymentsStatus est une énumération
-    private PaymentsStatus status=PaymentsStatus.CREATED; //    Par défaut is created
-//    on suppose qu'on vas génerer un pdf
+    //    @Enumerated(EnumType.STRING) // Si PaymentsStatus est une énumération
+    private PaymentsStatus status = PaymentsStatus.CREATED; //    Par défaut is created
+    //    on suppose qu'on vas génerer un pdf
     private String file;
     @ManyToOne
     private Students student;
