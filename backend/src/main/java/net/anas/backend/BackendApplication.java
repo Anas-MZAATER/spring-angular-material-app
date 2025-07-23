@@ -25,9 +25,9 @@ public class BackendApplication {
     CommandLineRunner commandLineRunner(StudentsRepo studentsRepo,
                                         PaymentsRepo paymentsRepo){
         return args -> {
-            studentsRepo.save(Students.builder().id(UUID.randomUUID().toString()).code("1111").firstName("Anas").build());
-            studentsRepo.save(Students.builder().id(UUID.randomUUID().toString()).code("2222").firstName("Iman").build());
-            studentsRepo.save(Students.builder().id(UUID.randomUUID().toString()).code("3333").firstName("Houssam").build());
+            studentsRepo.save(Students.builder().id(UUID.randomUUID().toString()).code("1111").programId("GL").firstName("Anas").build());
+            studentsRepo.save(Students.builder().id(UUID.randomUUID().toString()).code("2222").programId("GL").firstName("Iman").build());
+            studentsRepo.save(Students.builder().id(UUID.randomUUID().toString()).code("3333").programId("ISI").firstName("Houssam").build());
 
 
             PaymentsType[] paymentsType = PaymentsType.values();

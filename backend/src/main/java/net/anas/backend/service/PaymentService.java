@@ -1,6 +1,7 @@
 package net.anas.backend.service;
 
 
+import jakarta.persistence.EntityNotFoundException;
 import net.anas.backend.entities.Payments;
 import net.anas.backend.entities.PaymentsStatus;
 import net.anas.backend.entities.PaymentsType;
@@ -9,9 +10,13 @@ import net.anas.backend.repository.PaymentsRepo;
 import net.anas.backend.repository.StudentsRepo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,12 +35,10 @@ public class PaymentService {
         this.studentsRepo = studentsRepo;
     }
 
-    public Payments savePayment(MultipartFile file,
-                                LocalDate date, double amount,
-                                PaymentsType type,
-                                String studentsC){
+    public Payments savePayment(MultipartFile file, LocalDate date, double amount,
+                                PaymentsType type, String studentsC){
+        //create path for app in client home directory
         Path path = Paths.get(System.getProperty("user.home"),"students-app-file","payments");
-
         if(!Files.exists(path)){
             //Traiter la méthode à tâche critique : Pour créer un dossier dans le dossier home de l'utilisateur
             //aprés verifier : if not existe
@@ -48,8 +51,8 @@ public class PaymentService {
                 throw new RuntimeException(e);
             }
         }
-        String paymentsId = UUID.randomUUID().toString();
-        Path filePath = Paths.get(System.getProperty("user.home"),"students-app-file","payments",paymentsId+".pdf");
+        String fileName = UUID.randomUUID().toString();
+        Path filePath = Paths.get(System.getProperty("user.home"),"students-app-file","payments",fileName+".pdf");
         try {
             Files.copy(file.getInputStream(),filePath);//permet de copier les données vers un fichier
             System.out.println("Fichier copy avec succès : " + path.toAbsolutePath());
@@ -66,9 +69,29 @@ public class PaymentService {
                 .status(PaymentsStatus.CREATED)
                 .date(date)
                 .file(filePath.toUri().toString())
+                // Utiliser .toUri() sur un Path (comme un java.nio.file.Path),
+                // ça génère une URI (Uniform Resource Identifier),
+                // mais basée sur ton système de fichiers local.
                 .build();
         Payments sevedPayment = paymentsRepo.save(payments);
         return sevedPayment;
+    }
+
+    public Payments updatePaymentStatus(PaymentsStatus status,
+                                        Long paymentId){
+        Payments payment = paymentsRepo.findById(paymentId).orElseThrow(()->new EntityNotFoundException("Payments with id "+paymentId+" not found"));
+        payment.setStatus(status);
+        return paymentsRepo.save(payment);
+    }
+
+    public byte[] getPaymentFile(Long paymentId) {
+        Payments payments = paymentsRepo.findById(paymentId).orElseThrow(()->new EntityNotFoundException("Payments with id "+paymentId+" not found"));
+        String filePath = payments.getFile();
+        try {
+            return Files.readAllBytes(Path.of(URI.create(filePath)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

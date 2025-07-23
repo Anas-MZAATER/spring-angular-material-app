@@ -15,9 +15,8 @@ public class Payments {
     private String description;
     private double amount;
     private PaymentsType type;
-//    Par défaut is created
-    @Enumerated(EnumType.STRING) // Si PaymentsStatus est une énumération
-    private PaymentsStatus status=PaymentsStatus.CREATED;
+//    @Enumerated(EnumType.STRING) // Si PaymentsStatus est une énumération
+    private PaymentsStatus status=PaymentsStatus.CREATED; //    Par défaut is created
 //    on suppose qu'on vas génerer un pdf
     private String file;
     @ManyToOne

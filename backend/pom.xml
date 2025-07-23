@@ -61,6 +61,31 @@
       <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
       <version>2.8.9</version>
     </dependency>
+
+    <!-- oauth2 resource server/JWT -->
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-resource-server -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-oauth2-resource-server</artifactId>
+      <version>6.5.1</version>
+    </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>-->
+<!--      <version>2.7.5</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-web</artifactId>-->
+<!--      <version>2.7.5</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.commons</groupId>-->
+<!--      <artifactId>commons-lang3</artifactId>-->
+<!--      <version>3.13.0</version>-->
+<!--    </dependency>-->
+
   </dependencies>
 
   <build>
