@@ -37,6 +37,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {authGuards} from "./guards/auth-guard";
 import {authorizationGuards} from "./guards/authorization-guard";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import {authorizationGuards} from "./guards/authorization-guard";
     // MatCellDef,
     // MatHeaderRowDef,
     // MatRowDef
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule //??????????????????????????????????????????????
   ],
   providers: [
     authGuards,

@@ -37,7 +37,7 @@ export class Students implements OnInit,AfterViewInit {
 
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
-    // initialisation static des étudiants
+    // initialisation static des étudiants(BRICOLER)
     this.students=[];
     for(let i=4;i<40;i++){
       this.students.push(

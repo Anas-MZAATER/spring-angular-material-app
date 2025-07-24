@@ -1,6 +1,7 @@
 package net.anas.backend;
 
 import net.anas.backend.entities.Payments;
+import net.anas.backend.entities.PaymentsStatus;
 import net.anas.backend.entities.PaymentsType;
 import net.anas.backend.entities.Students;
 import net.anas.backend.repository.PaymentsRepo;
@@ -39,6 +40,7 @@ public class BackendApplication {
                             .amount(1000+(int)(Math.random()*10000))
                             .date(LocalDate.now())
                             .type(paymentsType[index])
+                            .status(PaymentsStatus.CREATED)
                             .file(UUID.randomUUID().toString())
                             .student(st)
                             .build();
