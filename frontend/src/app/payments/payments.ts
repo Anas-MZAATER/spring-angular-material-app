@@ -4,6 +4,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {environment} from "../../environments/environment";
+import {StudentsService} from "../services/students.service";
 
 @Component({
   selector: 'app-payments',
@@ -25,11 +27,11 @@ export class Payments implements OnInit{
   //pour le tri
   @ViewChild(MatSort) sort!:MatSort;
 
-  constructor(private http: HttpClient,private router : Router) {
+  constructor(private studentsService : StudentsService) {
   }
 
   ngOnInit(): void {
-    this.http.get("http://localhost:8082/payments")
+    this.studentsService.getAllPayments()
         .subscribe({
           next:data => {
             // si data arrive je les stock dans mon liste puis dans table datasource
@@ -43,7 +45,4 @@ export class Payments implements OnInit{
           }
         })
   }
-
-
-
 }

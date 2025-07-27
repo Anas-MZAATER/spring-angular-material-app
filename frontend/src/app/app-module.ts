@@ -38,6 +38,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {authGuards} from "./guards/auth-guard";
 import {authorizationGuards} from "./guards/authorization-guard";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { StudentDetails } from './student-details/student-details';
+import {MatDialogContent, MatDialogModule} from "@angular/material/dialog";
+import { NewPayment } from './new-payment/new-payment';
+import {MatDatepickerInput, MatDatepickerModule, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -51,20 +57,17 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     Login,
     LoadStudents,
     LoadPayments,
+    StudentDetails,
+    NewPayment,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
-    // MatToolbar,
     MatButtonModule,
     MatIconModule,
-    // MatIcon,
     MatMenuModule,
-    // MatMenuTrigger,
-    // MatMenuItem,
     MatSidenavModule,
-    // MatDrawerContainer,
     MatNavList,
     MatListItem,
     MatTabNav,
@@ -77,17 +80,10 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     MatSort,
     MatInput,
     MatFormFieldModule,
-    // MatColumnDef,
-    // MatHeaderCell,
-    // MatCell,
-    // MatHeaderRow,
-    // MatRow,
-    // MatHeaderCellDef,
-    // MatCellDef,
-    // MatHeaderRowDef,
-    // MatRowDef
     ReactiveFormsModule,
-    HttpClientModule //??????????????????????????????????????????????
+    HttpClientModule,
+    MatDialogModule,
+    MatDatepickerModule, MatNativeDateModule, MatSelectModule
   ],
   providers: [
     authGuards,

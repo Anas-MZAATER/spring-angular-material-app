@@ -1,0 +1,76 @@
+<!--&lt;!&ndash; https://material.angular.dev/components/categories &ndash;&gt;-->
+<!--<div class="container">-->
+<!--    <mat-card class="login-card">-->
+<!--        <mat-card-title class="login-title">Login</mat-card-title>-->
+
+<!--        <mat-card-content class="login-container">-->
+<!--            <form [formGroup]="paymentFormGroup">-->
+<!--                <mat-form-field appearance="outline" class="full-width">-->
+<!--                    <mat-label>Username or Email</mat-label>-->
+<!--                    <input matInput formControlName="username" placeholder="Enter your email or username" autofocus />-->
+<!--                </mat-form-field>-->
+
+<!--                <mat-form-field appearance="outline" class="full-width">-->
+<!--                    <mat-label>Password</mat-label>-->
+<!--                    <input type="password" matInput formControlName="password" placeholder="Enter your password" />-->
+<!--                </mat-form-field>-->
+<!--            </form>-->
+<!--            &lt;!&ndash;verifier loginFormGroup content&ndash;&gt;-->
+<!--            <p>{{paymentFormGroup.value | json}}</p>-->
+<!--        </mat-card-content>-->
+
+<!--        <mat-card-actions align="end">-->
+<!--            <button-->
+<!--                    (click)="login()"-->
+<!--                    mat-raised-button color="primary"-->
+<!--            >Login</button>-->
+<!--        </mat-card-actions>-->
+<!--    </mat-card>-->
+
+<!--</div>-->
+<div class="container">
+    <mat-card [formGroup]="paymentFormGroup" class="home-card">
+        <mat-card-header>
+            <mat-card-title class="title">New payment</mat-card-title>
+        </mat-card-header>
+
+        <!-- pour séparer entre les composants de card avec un ligne-->
+        <mat-divider class="divider"></mat-divider>
+
+        <mat-card-content class="login-container">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Student Code</mat-label>
+                <input matInput formControlName="studentCode" placeholder="This is your Student Code" >
+            </mat-form-field>
+
+            <!--FROM mat datepicker => add this module aussi : MatNativeDateModule -->
+            <mat-form-field appearance="outline">
+                <mat-label>Payment Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <!--mat-select-->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Payment Type</mat-label>
+                <input matInput formControlName="type" placeholder="Enter Payment Type" >
+                <mat-select formControlName="type">
+                    <!--<mat-option value="CHECK">CHECK</mat-option>-->
+                    <!--<mat-option value="CASH">CASH</mat-option>-->
+                    <!--<mat-option value="TRANSFER">TRANSFER</mat-option>-->
+                    <!--<mat-option value="DEPOSIT">DEPOSIT</mat-option>-->
+                    @for (t of paymentTypes;track t){
+                        <mat-option [value]="t">{{ t }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>File</mat-label>
+                <input matInput type="fiile" formControlName="fileName" placeholder="This is your Student Code" >
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+</div>

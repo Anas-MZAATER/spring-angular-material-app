@@ -4,8 +4,6 @@ import {Router} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
-
-
 export class Authentification {
   public username:any;
   public roles : any;

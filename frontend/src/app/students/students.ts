@@ -2,17 +2,10 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Student} from "../model/students.model";
+import {StudentsService} from "../services/students.service";
 
-
-function randomString(len: number = 5): string {
-  const letters = 'abcdefghijklmnopqrstuvwxyz';
-  let str = '';
-  for (let i = 0; i < len; i++) {
-    str += letters[Math.floor(Math.random() * letters.length)];
-  }
-  return str;
-}
 
 @Component({
   selector: 'app-students',
@@ -20,47 +13,41 @@ function randomString(len: number = 5): string {
   templateUrl: './students.html',
   styleUrl: './students.css'
 })
-export class Students implements OnInit,AfterViewInit {
-  public students :any;
-  public dataSource:any;
-  public displayedColumns=["id","firstName","lastName","payments"];
+export class Students implements OnInit {
+  studentCode! : string;
+  students! :Array<Student>;
+  studentsDataSource! : MatTableDataSource<Student, MatPaginator>
+  public displayedColumns=["id","firstName","lastName","code","programId","actions"];
+
 
   //pour ajouter la pagination
   // la "!" pour ne pas l'initialiser
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   //pour le tri
-  @ViewChild(MatSort) sort!:MatSort;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router : Router) {
+  constructor(private activatedRoute : ActivatedRoute,
+              private studentsService : StudentsService,
+              private router : Router) {
   }
 
 
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
-    // initialisation static des étudiants(BRICOLER)
-    this.students=[];
-    for(let i=4;i<40;i++){
-      this.students.push(
-        {
-          id : i,
-          //initialiser les champs de nom et prenom par un chain aléatoire
-          firstName: randomString(4),
-          lastName: randomString(6),
-          payments:[]
-        }
-      );
-    }
-    this.dataSource=new MatTableDataSource(this.students)
-    //maintenant en affiche notre dataSource dans la partie html
+    this.studentsService.getAllStudents().subscribe({
+      next : data => {
+        this.studentCode = this.activatedRoute.snapshot.params['code'];
+        this.students =data;
+        this.studentsDataSource = new MatTableDataSource<Student>(this.students)
+        //maintenant en affiche notre dataSource dans la partie html
+        this.studentsDataSource.paginator = this.paginator;
+        this.studentsDataSource.sort = this.sort;
+      },
+      error:err=>{
+        console.log(err)
+      }
+    })
   }
 
-  ngAfterViewInit(): void {
-    // throw new Error('Method not implemented.');
-    //pour ajouter la pagination
-    this.dataSource.paginator = this.paginator;
-    //pour le tri
-    this.dataSource.sort = this.sort;
-  }
 
   //pour la recherche sans data-binding(solution classic)
   // filterStudents($event: Event) {
@@ -72,11 +59,22 @@ export class Students implements OnInit,AfterViewInit {
   filterStudents($event: Event) {
     const target = $event.target as HTMLInputElement;
     const value = target.value.trim().toLowerCase(); // normalisation
-    this.dataSource.filter = value;
+    this.studentsDataSource.filter = value;
   }
 
-  getPayments(students:any) {
-    this.router.navigateByUrl("/payments")
-    //=>injection de la class Router
+  // getPayments(students:any) {
+  //   this.router.navigateByUrl("/payments")
+  //   //=>injection de la class Router
+  // }
+  getPayments(student:Student) {
+    this.router.navigateByUrl(`/template/studentDetails/${student.code}`)
+    // this.router.navigateByUrl("/admin/studentDetails/"+student.code)
+    //=>injection de la class/Service Router
   }
+
+  newPayment(student:Student) {
+    this.router.navigateByUrl(`template/newPayment/${student.code}`)
+  }
+
+  protected readonly Element = Element;
 }

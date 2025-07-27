@@ -19,20 +19,22 @@
 <!--===============bien styler=============-->
 <div class="container">
     <mat-card class="home-card">
-        <mat-card-header>
+        <mat-card-header style="background-color: aqua;border-radius: 5px">
             <mat-card-title class="title">Payments tiltle</mat-card-title>
         </mat-card-header>
 
         <!-- pour séparer entre les composants de card avec un ligne-->
         <mat-divider class="divider"></mat-divider>
 
+        <mat-toolbar>
+            <button (click)="newPayment()" mat-raised-button color="primary">New Payment</button>
+        </mat-toolbar>
+
         <mat-card-content class="content">
-
-
             <!-- l'attribut table fais un forEach pour sur le dataSource
              pour chaque étudiant et puis pour chaque attribut de ce items-->
             <!-- matSort pout le tri par chaque attribut-->
-            <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+            <table matSort mat-table [dataSource]="paymentsDataSource" class="mat-elevation-z1">
 
                 <!--- Note that these columns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
