@@ -76,5 +76,5 @@ export class Students implements OnInit {
     this.router.navigateByUrl(`template/newPayment/${student.code}`)
   }
 
-  protected readonly Element = Element;
+  //?????// protected readonly Element = Element;
 }
