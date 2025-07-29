@@ -2,6 +2,7 @@ package net.anas.backend.service;
 
 
 import jakarta.persistence.EntityNotFoundException;
+import net.anas.backend.dtos.NewPaymentDTO;
 import net.anas.backend.entities.Payments;
 import net.anas.backend.entities.PaymentsStatus;
 import net.anas.backend.entities.PaymentsType;
@@ -35,8 +36,7 @@ public class PaymentService {
         this.studentsRepo = studentsRepo;
     }
 
-    public Payments savePayment(MultipartFile file, LocalDate date, double amount,
-                                PaymentsType type, String studentsC){
+    public Payments savePayment(MultipartFile file, NewPaymentDTO newPaymentDTO) {
         //create path for app in client home directory
         Path path = Paths.get(System.getProperty("user.home"),"students-app-file","payments");
         if(!Files.exists(path)){
@@ -61,13 +61,13 @@ public class PaymentService {
             //e.printStackTrace();
             throw new RuntimeException(e);
         }
-        Students students = studentsRepo.findByCode(studentsC);
+        Students students = studentsRepo.findByCode(newPaymentDTO.getStudentCode());
         Payments payments =  Payments.builder()
-                .type(type)
-                .amount(amount)
+                .type(newPaymentDTO.getType())
+                .amount(newPaymentDTO.getAmount())
                 .student(students)
                 .status(PaymentsStatus.CREATED)
-                .date(date)
+                .date(newPaymentDTO.getDate())
                 .file(filePath.toUri().toString())
                 // Utiliser .toUri() sur un Path (comme un java.nio.file.Path),
                 // ça génère une URI (Uniform Resource Identifier),

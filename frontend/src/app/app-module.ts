@@ -44,6 +44,8 @@ import { NewPayment } from './new-payment/new-payment';
 import {MatDatepickerInput, MatDatepickerModule, MatDatepickerToggle} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -83,7 +85,8 @@ import {MatSelectModule} from "@angular/material/select";
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    MatDatepickerModule, MatNativeDateModule, MatSelectModule
+    MatDatepickerModule, MatNativeDateModule, MatSelectModule,
+    PdfViewerModule, MatProgressSpinnerModule
   ],
   providers: [
     authGuards,

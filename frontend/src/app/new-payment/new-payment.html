@@ -43,34 +43,92 @@
                 <input matInput formControlName="studentCode" placeholder="This is your Student Code" >
             </mat-form-field>
 
-            <!--FROM mat datepicker => add this module aussi : MatNativeDateModule -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Amount</mat-label>
+                <input matInput formControlName="amount" placeholder="Enter the Amount" >
+            </mat-form-field>
+
+            <!--search mat datepicker => add this module aussi : MatNativeDateModule -->
             <mat-form-field appearance="outline">
                 <mat-label>Payment Date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="date">
-                <mat-hint>DD/MM/YYYY</mat-hint>
+                <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Enter the Payment Date">
+                <mat-hint>D/M/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
 
-            <!--mat-select-->
-            <mat-form-field appearance="outline" class="full-width">
+            <!--search mat-select-->
+<!--            <mat-form-field appearance="outline" class="full-width">-->
+<!--                <mat-label>Payment Type</mat-label>-->
+<!--                <input matInput formControlName="type" placeholder="Enter Payment Type" >-->
+<!--                <mat-select formControlName="type">-->
+<!--                    &lt;!&ndash;<mat-option value="CHECK">CHECK</mat-option>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<mat-option value="CASH">CASH</mat-option>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<mat-option value="TRANSFER">TRANSFER</mat-option>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<mat-option value="DEPOSIT">DEPOSIT</mat-option>&ndash;&gt;-->
+<!--                    @for (t of paymentTypes;track t){-->
+<!--                        <mat-option [value]="t">{{t}}</mat-option>-->
+<!--                    }-->
+<!--                </mat-select>-->
+<!--            </mat-form-field>-->
+            <mat-form-field appearance="fill" class="full-width">
                 <mat-label>Payment Type</mat-label>
-                <input matInput formControlName="type" placeholder="Enter Payment Type" >
-                <mat-select formControlName="type">
-                    <!--<mat-option value="CHECK">CHECK</mat-option>-->
-                    <!--<mat-option value="CASH">CASH</mat-option>-->
-                    <!--<mat-option value="TRANSFER">TRANSFER</mat-option>-->
-                    <!--<mat-option value="DEPOSIT">DEPOSIT</mat-option>-->
+                <mat-select formControlName="type" placeholder="Select Payment Type">
+                    <!-- &lt;!&ndash;<mat-option value="CHECK">CHECK</mat-option>&ndash;&gt;-->
+                    <!-- &lt;!&ndash;<mat-option value="CASH">CASH</mat-option>&ndash;&gt;-->
+                    <!-- &lt;!&ndash;<mat-option value="TRANSFER">TRANSFER</mat-option>&ndash;&gt;-->
+                    <!-- &lt;!&ndash;<mat-option value="DEPOSIT">DEPOSIT</mat-option>&ndash;&gt;-->
                     @for (t of paymentTypes;track t){
-                        <mat-option [value]="t">{{ t }}</mat-option>
+                        <mat-option [value]="t">{{t}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
 
+            <!-- add only pdf attachment using Angular Material-->
             <mat-form-field appearance="outline" class="full-width">
-                <mat-label>File</mat-label>
-                <input matInput type="fiile" formControlName="fileName" placeholder="This is your Student Code" >
+                <mat-label>Select file</mat-label>
+                <input matInput readonly formControlName="fileName" type="text" id="fakeFileInput" (click)="hiddenInput.click()" placeholder="No file selected">
+                <input hidden #hiddenInput type="file" (change)="selectFile($event)" accept=".pdf">
+                <mat-icon matSuffix (click)="hiddenInput.click()">attach_file</mat-icon><!--<mat-icon matSuffix>folder_open</mat-icon>-->
             </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="savePayment()" mat-raised-button color="primary">Save Payment</button>
+
+        </mat-card-actions>
+    </mat-card>
+
+<!--    <div *ngIf="showSpinner" class="spinner-container">-->
+<!--        &lt;!&ndash;<mat-spinner></mat-spinner>&ndash;&gt;-->
+<!--        <div class="spinner"></div>-->
+<!--    </div>-->
+    @if (showSpinner){
+        <div class="spinner-container">
+            <!--<mat-spinner></mat-spinner>-->
+            <div class="spinner"></div>
+        </div>
+    }
+
+    <mat-card class="home-card">
+        <mat-card-header>
+            <mat-card-title>Payment File</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <pdf-viewer
+            [src]="pdfFileUrl"
+            [original-size]="true"
+            [render-text]="true"
+            [rotation]="0"
+            [show-all]="true"
+            [fit-to-page]="true"
+            [zoom]="1"
+            [zoom-scale]="'page-width'"
+            [external-link-target]="'blank'"
+            [autoresize]="true"
+            [show-borders]="false"
+            class="pdf-viewer"
+            (after-load-complete)="afterLoadComplete($event)"
+            ></pdf-viewer>
         </mat-card-content>
     </mat-card>
 </div>

@@ -2,6 +2,7 @@ package net.anas.backend.web;
 
 
 import jakarta.persistence.EntityNotFoundException;
+import net.anas.backend.dtos.NewPaymentDTO;
 import net.anas.backend.entities.Payments;
 import net.anas.backend.entities.PaymentsStatus;
 import net.anas.backend.entities.PaymentsType;
@@ -91,10 +92,9 @@ public class StudentsRestController {
     //#  envoyé par un client (navigateur, application Angular, Postman, etc.)
     //#  via une requête HTTP multipart/form-data.
     public Payments savePayment(
-            @RequestParam MultipartFile file, LocalDate date, double amount,
-            PaymentsType type, String studentsC) {
+            @RequestParam("file") MultipartFile file, NewPaymentDTO newPaymentDTO) {
 
-        return paymentService.savePayment(file, date, amount, type, studentsC);
+        return paymentService.savePayment(file, newPaymentDTO);
     }
 
     @GetMapping(path = "/paymentFile/{paymentId}",produces = MediaType.APPLICATION_PDF_VALUE)
