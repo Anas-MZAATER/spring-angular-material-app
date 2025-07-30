@@ -46,6 +46,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { PaymentDetails } from './payment-details/payment-details';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     LoadPayments,
     StudentDetails,
     NewPayment,
+    PaymentDetails,
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@ export class StudentDetails implements OnInit{
   // initialiser la dataSource de table
   paymentsDataSource! : MatTableDataSource<Payment>
   //liste des colonnes qu'on va afficher
-  public displayedColumns =['id','date','amount','type','status','firstName'];
+  public displayedColumns =['id','date','amount','type','status','firstName','details'];
 
   //pour ajouter la pagination
   // la "!" pour ne pas l'initialiser
@@ -50,5 +50,9 @@ export class StudentDetails implements OnInit{
 
   newPayment() {
     this.router.navigateByUrl(`template/newPayment/${this.studentCode}`)
+  }
+
+  paymentDetails(element:Payment) {
+    this.router.navigateByUrl(`template/paymentDetails/${element.id}`)
   }
 }

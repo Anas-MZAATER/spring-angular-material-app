@@ -93,7 +93,6 @@ public class StudentsRestController {
     //#  via une requête HTTP multipart/form-data.
     public Payments savePayment(
             @RequestParam("file") MultipartFile file, NewPaymentDTO newPaymentDTO) {
-
         return paymentService.savePayment(file, newPaymentDTO);
     }
 

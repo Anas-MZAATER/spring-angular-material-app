@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PaymentType} from "../model/students.model";
 import {StudentsService} from "../services/students.service";
 
@@ -19,13 +19,14 @@ export class NewPayment implements OnInit {
 
   constructor(private fb:FormBuilder,
               private activatedRoute:ActivatedRoute,
-              private studentsService:StudentsService) {
+              private studentsService:StudentsService,
+              private router:Router) {
   }
 
   ngOnInit(): void {
     for (let elt in PaymentType){
       let value =PaymentType[elt];
-      if(typeof value ==='string'){
+      if(typeof value === 'string'){
         this.paymentTypes.push(value);
       }
     }
@@ -56,6 +57,7 @@ export class NewPayment implements OnInit {
     this.showSpinner=true;
     //// get the data from the paymentFormGroup
     // assurer la bon format de la date
+
     let date = new Date(this.paymentFormGroup.value.date);
     let formattedDate = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
 
@@ -69,6 +71,15 @@ export class NewPayment implements OnInit {
       next : data =>{
         alert('payment saved successfully!')
         this.showSpinner=false;
+        this.router.navigateByUrl(`template/students`)
+        // this.paymentFormGroup=this.fb.group({
+        //   studentCode : this.fb.control(this.studentCode),
+        //   date : this.fb.control(''),
+        //   amount : this.fb.control(''),
+        //   type : this.fb.control(''),
+        //   fileSource : this.fb.control(''),
+        //   fileName : this.fb.control('')
+        // });
       },
       error : err =>{
         console.log(err);

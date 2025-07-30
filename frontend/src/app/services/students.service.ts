@@ -27,4 +27,8 @@ export class StudentsService {
     return this.http.post<Payment>(environment.backendHost+`/payments`,formData) // this.http.get<Array<StudentsService>>(`${environment.backendHost}/payments`)
   }
 
+  public getPaymentDetails(paymentId: number) {
+    return this.http.get(`${environment.backendHost}/paymentFile/${paymentId}`,
+        {responseType:'blob'});
+  }
 }

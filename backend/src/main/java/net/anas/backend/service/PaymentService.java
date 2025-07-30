@@ -62,7 +62,8 @@ public class PaymentService {
             throw new RuntimeException(e);
         }
         Students students = studentsRepo.findByCode(newPaymentDTO.getStudentCode());
-        Payments payments =  Payments.builder()
+        //build payment object
+        Payments payment =  Payments.builder()
                 .type(newPaymentDTO.getType())
                 .amount(newPaymentDTO.getAmount())
                 .student(students)
@@ -73,7 +74,8 @@ public class PaymentService {
                 // ça génère une URI (Uniform Resource Identifier),
                 // mais basée sur ton système de fichiers local.
                 .build();
-        Payments sevedPayment = paymentsRepo.save(payments);
+        // persiste payment object status
+        Payments sevedPayment = paymentsRepo.save(payment);
         return sevedPayment;
     }
 
